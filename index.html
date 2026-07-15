@@ -233,6 +233,40 @@ footer{border-top:1px solid var(--line);padding:56px 0 44px;background:var(--nig
 .foot .c b{color:var(--chalk);font-weight:600}
 .foot .mono{font-size:.78rem;color:#5c6577;margin-top:6px}
 
+/* ---------------- RESULTADOS ---------------- */
+.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rt{background:var(--night-2);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.rt .hd{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--night-3),var(--night-2))}
+.rt .hd .d{font-family:'Anton';font-size:1.8rem;line-height:.9}
+.rt .hd .d small{font-family:'Anton';font-size:1rem;color:var(--ember);margin-left:3px}
+.rt .hd .count{font-family:'Space Mono',monospace;font-weight:700;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.rt ol{list-style:none;margin:0;padding:6px 0;flex:1}
+.rt li{display:grid;grid-template-columns:30px 1fr auto;gap:12px;align-items:center;padding:9px 18px;border-bottom:1px solid rgba(38,48,63,.45)}
+.rt li:last-child{border-bottom:0}
+.rt li .pos{font-family:'Space Mono',monospace;font-weight:700;font-size:.82rem;color:var(--muted);text-align:center}
+.rt li .nm{font-weight:600}
+.rt li .tm{font-family:'Space Mono',monospace;font-weight:700;color:var(--chalk);font-variant-numeric:tabular-nums;font-size:.95rem}
+.rt li.pod1,.rt li.pod2,.rt li.pod3{background:rgba(255,255,255,.02)}
+.rt li.pod1 .pos,.rt li.pod2 .pos,.rt li.pod3 .pos{color:#0c0f16;border-radius:50%;width:24px;height:24px;line-height:24px;margin:0 auto}
+.rt li.pod1 .pos{background:#ffcf4a}
+.rt li.pod2 .pos{background:#cdd6e3}
+.rt li.pod3 .pos{background:#e0955a}
+.rt li.pod1 .nm{color:#fff}
+.rt li.out{opacity:.7}
+.rt li.out .tm{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.res-legend{margin-top:18px;color:var(--muted);font-size:.82rem;font-family:'Space Mono',monospace;display:flex;gap:20px;flex-wrap:wrap}
+
+/* ---------------- VÍDEO ---------------- */
+.videobox{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#000;box-shadow:var(--shadow)}
+.videobox video{width:100%;display:block;max-height:72vh;background:#000}
+
+/* ---------------- MEETING CELEBRADO (hero) ---------------- */
+.celebrated{display:inline-flex;align-items:center;gap:14px;margin-top:38px;background:rgba(62,207,142,.08);border:1px solid rgba(62,207,142,.35);border-radius:14px;padding:14px 20px}
+.celebrated .chk{width:30px;height:30px;flex:none;border-radius:50%;background:var(--ok);color:#04110b;font-weight:700;display:flex;align-items:center;justify-content:center}
+.celebrated .txt{display:flex;flex-direction:column}
+.celebrated .txt b{font-weight:700}
+.celebrated .txt span{color:var(--muted);font-size:.9rem}
+
 /* ---------------- RESPONSIVE ---------------- */
 @media(max-width:860px){
   .nav{display:none}
@@ -241,6 +275,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 44px;background:var(--nig
   .event .time{grid-column:1;text-align:left;margin-top:6px}
   .event .time .t{font-size:1.2rem}
   .startlists{grid-template-columns:1fr}
+  .results-grid{grid-template-columns:1fr}
   .venue{grid-template-columns:1fr}
   .checks{grid-template-columns:repeat(3,1fr)}
 }
@@ -280,9 +315,9 @@ footer{border-top:1px solid var(--line);padding:56px 0 44px;background:var(--nig
       <span class="tag">Athletics&nbsp;Coach</span>
     </div>
     <nav class="nav">
+      <a href="#resultados">Resultados</a>
+      <a href="#video">Vídeo</a>
       <a href="#competiciones">Pruebas</a>
-      <a href="#inscripcion">Inscripción</a>
-      <a href="#inscritos">Inscritos</a>
       <a href="#llegar">Cómo llegar</a>
     </nav>
   </div>
@@ -297,15 +332,12 @@ footer{border-top:1px solid var(--line);padding:56px 0 44px;background:var(--nig
     </div>
     <p class="lede reveal">Antes de colgar las zapatillas un par de semanas, Antonio Martínez Ardil reúne a sus pupilos y a unos cuantos amigos invitados para despedir el verano sobre el tártan. Una tarde, tres distancias y las ganas de dejarlo todo en la pista. Corre la que quieras. O las tres.</p>
     <div class="hero-cta reveal">
-      <a href="#inscripcion" class="btn" onclick="openForm()">Inscríbete</a>
-      <a href="#competiciones" class="btn ghost">Ver las pruebas</a>
+      <a href="#resultados" class="btn">Ver clasificaciones</a>
+      <a href="#video" class="btn ghost">Vídeo resumen</a>
     </div>
-    <div class="clock reveal" id="clock" aria-label="Cuenta atrás para el pistoletazo de salida">
-      <span class="cap">Falta&nbsp;para<br>el&nbsp;meeting</span>
-      <div class="unit"><div class="num" id="cd-d">--</div><div class="lbl">Días</div></div>
-      <div class="unit"><div class="num" id="cd-h">--</div><div class="lbl">Horas</div></div>
-      <div class="unit"><div class="num" id="cd-m">--</div><div class="lbl">Min</div></div>
-      <div class="unit"><div class="num" id="cd-s">--</div><div class="lbl">Seg</div></div>
+    <div class="celebrated reveal">
+      <span class="chk">✓</span>
+      <div class="txt"><b>Meeting celebrado</b><span>Viernes 10 de julio · ya hay clasificaciones y vídeo</span></div>
     </div>
   </div>
 </header>
@@ -318,6 +350,93 @@ footer{border-top:1px solid var(--line);padding:56px 0 44px;background:var(--nig
       <div class="fact"><div class="k">Hora</div><div class="v">19:15 h</div><div class="s">Calentamiento juntos · 1ª carrera 20:00</div></div>
       <div class="fact"><div class="k">Lugar</div><div class="v">Alcantarilla</div><div class="s">Polideportivo Manuel Ruiz Pérez</div></div>
       <div class="fact"><div class="k">Formato</div><div class="v">3 Distancias</div><div class="s">Corre una, dos o las tres</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= RESULTADOS ======================= -->
+<section class="section" id="resultados">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Clasificaciones · 10 de julio</span>
+        <h2>Resultados</h2>
+      </div>
+      <p>Así quedó la cosa sobre el tártan. Cronos oficiosos, orgullo del todo real.</p>
+    </div>
+    <div class="results-grid">
+      <div class="rt reveal">
+        <div class="hd"><span class="d">800<small>m</small></span><span class="count">11 en meta</span></div>
+        <ol>
+          <li class="pod1"><span class="pos">1</span><span class="nm">Fran</span><span class="tm">2:09.88</span></li>
+          <li class="pod2"><span class="pos">2</span><span class="nm">Paco</span><span class="tm">2:16.03</span></li>
+          <li class="pod3"><span class="pos">3</span><span class="nm">Campos</span><span class="tm">2:18.86</span></li>
+          <li class=""><span class="pos">4</span><span class="nm">Joaquín</span><span class="tm">2:18.90</span></li>
+          <li class=""><span class="pos">5</span><span class="nm">Ardil</span><span class="tm">2:19.79</span></li>
+          <li class=""><span class="pos">6</span><span class="nm">Dani</span><span class="tm">2:20.33</span></li>
+          <li class=""><span class="pos">7</span><span class="nm">Carlos</span><span class="tm">2:20.69</span></li>
+          <li class=""><span class="pos">8</span><span class="nm">Eugenio</span><span class="tm">2:28.44</span></li>
+          <li class=""><span class="pos">9</span><span class="nm">Luis Fran</span><span class="tm">2:28.60</span></li>
+          <li class=""><span class="pos">10</span><span class="nm">Carolina</span><span class="tm">2:54.03</span></li>
+          <li class=""><span class="pos">11</span><span class="nm">Almudena</span><span class="tm">2:54.03</span></li>
+          <li class="out"><span class="pos">–</span><span class="nm">Bruno</span><span class="tm tag">🐰 Liebre</span></li>
+        </ol>
+      </div>
+      <div class="rt reveal">
+        <div class="hd"><span class="d">1500<small>m</small></span><span class="count">7 en meta</span></div>
+        <ol>
+          <li class="pod1"><span class="pos">1</span><span class="nm">Ardil</span><span class="tm">4:27.28</span></li>
+          <li class="pod2"><span class="pos">2</span><span class="nm">Bruno</span><span class="tm">4:27.32</span></li>
+          <li class="pod3"><span class="pos">3</span><span class="nm">Pepe</span><span class="tm">4:27.81</span></li>
+          <li class=""><span class="pos">4</span><span class="nm">Eugenio</span><span class="tm">4:28.94</span></li>
+          <li class=""><span class="pos">5</span><span class="nm">Luis Fran</span><span class="tm">4:53.02</span></li>
+          <li class=""><span class="pos">6</span><span class="nm">Campos</span><span class="tm">4:59.48</span></li>
+          <li class=""><span class="pos">7</span><span class="nm">Joaquín</span><span class="tm">4:59.60</span></li>
+          <li class="out"><span class="pos">–</span><span class="nm">Paco</span><span class="tm tag">DNF</span></li>
+          <li class="out"><span class="pos">–</span><span class="nm">Dani</span><span class="tm tag">DNF</span></li>
+        </ol>
+      </div>
+      <div class="rt reveal">
+        <div class="hd"><span class="d">3000<small>m</small></span><span class="count">8 en meta</span></div>
+        <ol>
+          <li class="pod1"><span class="pos">1</span><span class="nm">Fran</span><span class="tm">9:29.48</span></li>
+          <li class="pod2"><span class="pos">2</span><span class="nm">Luis Fran</span><span class="tm">10:11.52</span></li>
+          <li class="pod3"><span class="pos">3</span><span class="nm">Dani</span><span class="tm">10:32.88</span></li>
+          <li class=""><span class="pos">4</span><span class="nm">Paco</span><span class="tm">10:34.90</span></li>
+          <li class=""><span class="pos">5</span><span class="nm">Joaquín</span><span class="tm">10:58.20</span></li>
+          <li class=""><span class="pos">6</span><span class="nm">Campos</span><span class="tm">10:59.09</span></li>
+          <li class=""><span class="pos">7</span><span class="nm">Ardil</span><span class="tm">11:04.54</span></li>
+          <li class=""><span class="pos">8</span><span class="nm">Carolina</span><span class="tm">11:05.66</span></li>
+          <li class="out"><span class="pos">–</span><span class="nm">Almudena</span><span class="tm tag">🐰 Liebre</span></li>
+          <li class="out"><span class="pos">–</span><span class="nm">Pepe</span><span class="tm tag">🐰 Liebre</span></li>
+          <li class="out"><span class="pos">–</span><span class="nm">Eugenio</span><span class="tm tag">DNF</span></li>
+          <li class="out"><span class="pos">–</span><span class="nm">Bruno</span><span class="tm tag">DNF</span></li>
+        </ol>
+      </div>
+    </div>
+    <div class="res-legend">
+      <span>Tiempos en m:ss.cc</span>
+      <span>🐰 Liebre</span>
+      <span>DNF · No terminó</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= VÍDEO RESUMEN ======================= -->
+<section class="section reg" id="video">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">En movimiento</span>
+        <h2>Vídeo resumen</h2>
+      </div>
+      <p>Dos minutos de meeting: salidas, vueltas y esprint final. Súbele el volumen.</p>
+    </div>
+    <div class="videobox reveal">
+      <video controls playsinline preload="metadata" poster="video-poster.jpg">
+        <source src="video-resumen.mp4" type="video/mp4">
+        Tu navegador no puede reproducir el vídeo. <a href="video-resumen.mp4">Descárgalo aquí</a>.
+      </video>
     </div>
   </div>
 </section>
@@ -494,35 +613,12 @@ const CONFIG = {
 const DISTANCES = ["800","1500","3000"];
 const LS_KEY = "meeting_team_ardil_inscritos";
 
-/* -------- Cuenta atrás al 10 de julio 19:15 (hora española) -------- */
-function nextTarget(){
-  const now = new Date();
-  let year = now.getFullYear();
-  // 10 de julio 19:15, hora peninsular (UTC+2 en verano)
-  let t = new Date(Date.UTC(year,6,10,17,15,0)); // 17:15 UTC = 19:15 CEST (verano)
-  if (t.getTime() < now.getTime()) t = new Date(Date.UTC(year+1,6,10,17,15,0));
-  return t;
-}
-const TARGET = nextTarget();
+/* -------- Fecha del meeting (ya celebrado: 10 de julio) -------- */
 (function setDateline(){
-  const dias=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
-  const wd = dias[TARGET.getDay()];
-  const cap = wd.charAt(0).toUpperCase()+wd.slice(1);
-  document.getElementById("dateline").textContent = cap+" 10 de julio";
-  document.getElementById("fact-day").textContent = cap;
+  document.getElementById("dateline").textContent = "Viernes 10 de julio";
+  const fd = document.getElementById("fact-day");
+  if (fd) fd.textContent = "Viernes";
 })();
-function tick(){
-  const diff = TARGET.getTime() - Date.now();
-  const set=(id,v)=>document.getElementById(id).textContent=String(Math.max(0,v)).padStart(2,"0");
-  if(diff<=0){set("cd-d",0);set("cd-h",0);set("cd-m",0);set("cd-s",0);
-    document.querySelector(".clock .cap").innerHTML="¡Hoy&nbsp;se<br>corre!";return;}
-  const s=Math.floor(diff/1000);
-  set("cd-d",Math.floor(s/86400));
-  set("cd-h",Math.floor(s%86400/3600));
-  set("cd-m",Math.floor(s%3600/60));
-  set("cd-s",s%60);
-}
-tick(); setInterval(tick,1000);
 
 /* -------- Formulario -------- */
 function openForm(){
